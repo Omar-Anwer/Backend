@@ -1,0 +1,80 @@
+REST APIs
+1. Add entity/model classes ( entity/Dog.java)
+2. Add CRUD Repository interfaces (repository/DogRepository.java)
+3. Add Service (Business logic) (service/DogService.java + DogServiceImpl.java)
+4. Add Controller (routing APIs) (controller/DogController.java)
+
+5. Add config  (config/SpringSecurityConfig.java + config/SwaggerConfig)
+
+6. Add documentation swagger (documentation http://localhost:8080/swagger-ui.html)
+7. Add tests   (unit test + integration)
+8. Add security
+
+- Add data.sql
+- Enable Eureka client  (@EnableEurekaClient + add application.properties)
+
+***************************************
+./mvnw clean package
+java -jar target/XXXX-0.0.1-SNAPSHOT.jar
+***************************************
+
+**************************************************************
+Map Location Service
+**************************************************************
+http://localhost:9191/maps/?lat=1&lon=2
+ public Address get(@RequestParam Double lat, @RequestParam Double lon) {
+        return addressRepository.getRandom();
+ }
+***************************************************************
+Pricing Service
+***************************************************************
+Old endpoint: http://localhost:8082/services/price?vehicleId=1
+New endpoint: http://localhost:8082/prices/
+http://localhost:8082/prices/1
+http://localhost:8082/h2
+
+dat.sql
+INSERT INTO price (currency, price, vehicle_id) VALUES ('USD', 5000, 1);
+INSERT INTO price (currency, price, vehicle_id) VALUES ('USD', 6000, 2);
+INSERT INTO price (currency, price, vehicle_id) VALUES ('USD', 7000, 3);
+INSERT INTO price (currency, price, vehicle_id) VALUES ('EUR', 7567, 4);
+************************************************************************
+Vehicle APIs
+************************************************************************
+http://localhost:8080/
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/cars/h2
+1. POST at http://localhost:8080/cars/
+{
+   "condition":"USED",
+   "details":{
+      "body":"sedan",
+      "model":"Impala",
+      "manufacturer":{
+         "code":101,
+         "name":"Chevrolet"
+      },
+      "numberOfDoors":4,
+      "fuelType":"Gasoline",
+      "engine":"3.6L V6",
+      "mileage":32280,
+      "modelYear":2018,
+      "productionYear":2018,
+      "externalColor":"white"
+   },
+   "location":{
+      "lat":40.73061,
+      "lon":-73.935242
+   }
+}
+2. GET at http://localhost:8080/cars/1
+
+*********************************************
+
+https://github.com/samir-sayyed/vehicle-api/blob/main/vehicles-api/src/main/java/com/udacity/vehicles/service/CarService.java
+https://github.com/kcm3394/Vehicles-API---Udacity-JDND/blob/master/projects/P02-VehiclesAPI/
+https://github.com/kratipaw/car_website_backend/blob/master/pricing-service/src/test/java/com/udacity/pricing/PricingServiceApplicationTests.java
+https://github.com/kotlinc0der/car-website-backend/blob/master/pricing-service/src/test/java/com/udacity/pricing/PricingServiceApplicationTests.java
+https://github.com/ploratran/VehiclesAPI/blob/master/P02-VehiclesAPI/
+
+
