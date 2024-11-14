@@ -1,0 +1,40 @@
+nvm install 16
+nvm use 16
+node -v
+---------
+
+npm init -y
+-------
+npm install -g yarn
+npm install -g nodemon
+
+npm i -g typescript
+tsc -v
+tsc -w index.ts (watch mode)
+--------
+nodemon .\index.js
+
+
+npm i --save-dev prettier@2.5.1
+npm i --save-dev eslint@8.8.0
+npm i --save-dev eslint-config-prettier@8.3.0
+npm i --save-dev eslint-plugin-prettier@4.0.0
+
+
+
+npm i --save-dev typescript
+
+
+npm i --save-dev ts-node 
+npm i --save-dev @types/node
+****npm i --save-dev @typescript-eslint/eslint-plugin@4.6.1
+****npm i --save-dev @typescript-eslint/parser@4.6.1
+-----------
+npx eslint --init
+npx tsc --init 
+-----------
+npm run prettier
+npm run lint
+npm run build 
+
+node build/main node build/.
