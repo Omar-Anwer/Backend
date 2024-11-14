@@ -1,0 +1,85 @@
+new java project (r + click on file explorer)
+|
+v
+sprnig boot
+|
+v
+maven (java management dependencies)
+|
+v
+java
+|
+v
+3.3 ( spring boot version)
+|
+v
+com. (group id: com.udacity)
+|
+v
+demo (artifact id: folder path of project)
+|
+v
+jar (java archive deployed on pc locally)
+|
+v
+17/22 jdk version
+|
+v
+spring web (spring starter web Spring MVC, REST, Tomcat, and Jackson) + spring starter test ( JUnit:unit_test, MockMvc:mock beans, AssertJ, Hamcrest:integration)
+spring devtools (auto refresh changes)
+thymeleaf (template engine)
+
+h2/mysql (database driver)  
+jpa ( JDBC, Hibernate, Transactions API, JPA, and Aspects.)
+
+eureka (server microservices)
+config client (spring cloud)
+
+swagger(documentation)
+lombok
+
+spring security
+----------------
+|
+v
+choose maven demo project location
+----------------------------------------
+Templates first (view)
+----------------------------------------
+Firslty, Create HTML template files -> (src/main/resources/templates)
+index.html
+home.html
+----------------------------------------
+Controllers second
+----------------------------------------
+|
+v
+Create controller package folder in (src/main/java)
+v-> create controller folder  new java package 
+|
+v
+Create classes in previous controller package folder src/main/java/controller
+|
+v-> create HomeController() -> New java file -> class
+|
+v map request URLs to methods
+|
+v
+start the server (run icon)
+--------------------------------
+REST APIs
+   Front end/view   (JSON/DTO)
+1. Add entity/model classes (entity/Dog.java)
+2. Add Data/Repository/mapper (Data base interfaces) (repository/DogRepository.java)
+3. Add Application/Service (Business logic) (service/DogService.java + DogServiceImpl.java)
+4. Add api/domain/Controller (routing APIs) (controller/DogController.java)
+
+5. Add config  (config/SpringSecurityConfig.java + config/SwaggerConfig)
+
+6. Add documentation swagger (documentation http://localhost:8080/swagger-ui.html)
+7. Add tests   (unit test + integration)
+8. Add security
+
+- Add data.sql
+- Enable Eureka client  (@EnableEurekaClient + add application.properties)
+
