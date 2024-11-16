@@ -2,8 +2,8 @@ nvm install 16
 nvm use 16
 node -v
 ---------
-
-npm init -y
+npm init
+npm init -y (defaults)
 -------
 npm install -g yarn
 npm install -g nodemon
@@ -14,21 +14,37 @@ tsc -w index.ts (watch mode)
 --------
 nodemon .\index.js
 
+npm install (remove node_modules then remove package-lock.json)
+npm uninstall xxx
+npm outdated
+npm update
+
+------------------------------
+(dependencies)
+npm i --save mongoose
+npm i --save dotenv
+npm i --save express@4.17.1
+-------------------------------
+(dev dependencies -D or --save-dev)
+npm i --save-dev nodemon
 
 npm i --save-dev prettier@2.5.1
 npm i --save-dev eslint@8.8.0
 npm i --save-dev eslint-config-prettier@8.3.0
 npm i --save-dev eslint-plugin-prettier@4.0.0
 
-
+-------------------------------
 
 npm i --save-dev typescript
-
-
 npm i --save-dev ts-node 
 npm i --save-dev @types/node
+npm i --save-dev @types/express
 ****npm i --save-dev @typescript-eslint/eslint-plugin@4.6.1
 ****npm i --save-dev @typescript-eslint/parser@4.6.1
+---------------------------------------
+
+
+npm audit fix
 -----------
 npx eslint --init
 npx tsc --init 
@@ -36,5 +52,55 @@ npx tsc --init
 npm run prettier
 npm run lint
 npm run build 
+npm run start or npm run dev
 
 node build/main node build/.
+====================================
+/project
+  /src
+    /controllers
+    /models
+    /routes
+    /services
+  /config
+  /tests
+=======================================
+project/
+├── src/                           # Main application source code
+│   ├── controllers/               # Route handlers (business logic)
+│   │   └── userController.js
+│   │
+│   ├──── models/                  # Database models/schema definitions
+│   │     └── userModel.js
+│   │
+│   ├──── routes/
+│   │     └── userRoutes.js        # API routes
+│   │
+│   ├──── services/
+│   │     └── userService.js       # Service layer (business-specific logic)
+│   │
+│   ├──── middlewares/             # Custom middleware
+│   │      ├── errorMiddleware.js
+│   │      └── asyncHandler.js
+│   │
+│   ├──── utils/                   # Utility functions/helpers
+│   │     ├── logger.js 
+│   │     └── validation.js
+│   │
+│   ├──── app.js                   # Express app initialization
+│   └──── server.js                # Entry point, server configuration
+│
+├── config/                        # Configuration files (e.g., environment, DB, etc.)
+│   └── db.js
+│
+├── tests/                         # Test cases (unit, integration, etc.)
+│
+├── public/                        # Public assets (e.g., images, static files)
+│
+├── .env                           # Environment variables
+│
+├── server.js
+│
+├── package.json                   # Node.js project metadata
+│
+└── README.md                      # Project documentation
