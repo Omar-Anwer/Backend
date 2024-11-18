@@ -9,6 +9,7 @@ app.use('/api/v1', routes);
 
 app.use(express.static('./public'));
 
+// Handle invalid routes
 app.all('*', (req: Request, res: Response): void => {
     res.status(404).send('<h1>Page Not Found!</h1>');
 });
@@ -16,3 +17,5 @@ app.all('*', (req: Request, res: Response): void => {
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });
+
+export default app;
