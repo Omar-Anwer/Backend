@@ -24,8 +24,8 @@ npm update
 npm i --save mongoose
 npm i --save dotenv
 npm i --save express@4.17.1
--------------------------------
-(dev dependencies -D or --save-dev)
+--------------
+(dev dependencies) (-D or --save-dev)
 npm i --save-dev nodemon
 
 npm i --save-dev prettier@2.5.1
@@ -34,38 +34,85 @@ npm i --save-dev eslint-config-prettier@8.3.0
 npm i --save-dev eslint-plugin-prettier@4.0.0
 
 -------------------------------
+(Testing)
+npm i --save-dev jasmine 
+npm i --save-dev jasmine-spec-reporter
+npm i --save-dev supertest
+
+-------------------------------
 
 npm i --save-dev typescript
 npm i --save-dev ts-node 
 npm i --save-dev @types/node
 npm i --save-dev @types/express
+npm i --save-dev @types/jasmine
+npm i --save-dev @types/supertest
 ****npm i --save-dev @typescript-eslint/eslint-plugin@4.6.1
 ****npm i --save-dev @typescript-eslint/parser@4.6.1
 ---------------------------------------
+prettier
 
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "tabWidth": 2
+}
+
+---------------------------------------
+package.js
+
+"scripts": {
+  "start": "node dist/server.js",
+  "build": "tsc",
+  "lint": "eslint . --ext .js,.ts",
+  "lint:fix": "eslint . --ext .js,.ts --fix",
+  "format": "prettier --write ."
+}
+
+---------------------------------------
+tsconfig.js
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["ES6", "DOM"],
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "./dist", "spec"]
+}
+
+----------------------------------------
 
 npm audit fix
 -----------
 npx eslint --init
 npx tsc --init 
+npx jasmine --init
 -----------
 npm run prettier
 npm run lint
 npm run build 
-npm run start or npm run dev
+npm run start or (npm run dev)
 
 node build/main node build/.
-====================================
-/project
-  /src
-    /controllers
-    /models
-    /routes
-    /services
-  /config
-  /tests
 =======================================
 project/
+│
+├── dist/                          # Production folder (output from transpiled src/.ts files)
+│
+├── spec                           # Jasmine specific configuration
+│      └── support
+│           └── jasmine.json
+│
 ├── src/                           # Main application source code
 │   ├── controllers/               # Route handlers (business logic)
 │   │   └── userController.js
@@ -85,9 +132,17 @@ project/
 │   │
 │   ├──── utils/                   # Utility functions/helpers
 │   │     ├── logger.js 
+│   │     ├── fileHandler.js       # Text file handling module
 │   │     └── validation.js
 │   │
+│   ├──── tests                    # Test cases (unit, integration, etc.)
+│   │     ├── helpers
+│   │     │      └── reporter.ts
+│   │     └── xxxSpec.ts
+│   │
+│   │
 │   ├──── app.js                   # Express app initialization
+│   │
 │   └──── server.js                # Entry point, server configuration
 │
 ├── config/                        # Configuration files (e.g., environment, DB, etc.)
@@ -98,8 +153,6 @@ project/
 ├── public/                        # Public assets (e.g., images, static files)
 │
 ├── .env                           # Environment variables
-│
-├── server.js
 │
 ├── package.json                   # Node.js project metadata
 │
