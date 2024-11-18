@@ -1,2 +1,5 @@
-# Node.js
+# Node.js modules
 node_modules/
+
+# TypeScript build output
+dist/
