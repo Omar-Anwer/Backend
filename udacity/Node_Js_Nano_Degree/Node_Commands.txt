@@ -14,41 +14,59 @@ tsc -w index.ts (watch mode)
 --------
 nodemon .\index.js
 
-npm install (remove node_modules then remove package-lock.json)
+npm install or npm i 
+npm i package-name@latest or npm i package-name@1.1.1
 npm uninstall xxx
 npm outdated
 npm update
+npm audit fix
+
+// reintsall node modules
+rm -rf node_modules package-lock.json && npm install
 
 ------------------------------
 (dependencies)
-npm i --save mongoose
-npm i --save dotenv
+
 npm i --save express@4.17.1
+npm i --save dotenv
+npm i --save mongoose
+npm i --save lodash
+
 --------------
 (dev dependencies) (-D or --save-dev)
+
 npm i --save-dev nodemon
 
 npm i --save-dev prettier@2.5.1
 npm i --save-dev eslint@8.8.0
-npm i --save-dev eslint-config-prettier@8.3.0
-npm i --save-dev eslint-plugin-prettier@4.0.0
+npm i --save-dev eslint-config-prettier@8.3.0 eslint-plugin-prettier@4.0.0
+npm i --save-dev eslint-plugin-node
+
+npm i --save-dev @typescript-eslint/eslint-plugin@5.59.11 @typescript-eslint/parser@5.59.11
 
 -------------------------------
 (Testing)
-npm i --save-dev jasmine 
-npm i --save-dev jasmine-spec-reporter
+
+npm i --save-dev jasmine jasmine-spec-reporter
 npm i --save-dev supertest
 
+npm i --save-dev @types/jasmine
+npm i --save-dev @types/supertest
+
 -------------------------------
+(typescript)
 
 npm i --save-dev typescript
 npm i --save-dev ts-node 
 npm i --save-dev @types/node
 npm i --save-dev @types/express
-npm i --save-dev @types/jasmine
-npm i --save-dev @types/supertest
-****npm i --save-dev @typescript-eslint/eslint-plugin@4.6.1
-****npm i --save-dev @typescript-eslint/parser@4.6.1
+
+3rd-part
+--------
+npm i --save-dev @types/package-name or npm i --save-dev @typescript/package-name
+
+npm i --save-dev @types/lodash
+
 ---------------------------------------
 prettier
 
@@ -80,6 +98,7 @@ tsconfig.js
     "lib": ["ES6", "DOM"],
     "module": "commonjs",
     "strict": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
@@ -91,16 +110,17 @@ tsconfig.js
 }
 
 ----------------------------------------
+(node package executer)
 
-npm audit fix
------------
 npx eslint --init
+npx jasmine init
 npx tsc --init 
-npx jasmine --init
+
 -----------
 npm run prettier
 npm run lint
-npm run build 
+npm run build
+npm run test or npm test
 npm run start or (npm run dev)
 
 node build/main node build/.
@@ -157,3 +177,10 @@ project/
 ├── package.json                   # Node.js project metadata
 │
 └── README.md                      # Project documentation
+=======================================================================
+npm init -y
+npm i --save express@4.17.1
+
+npm i --save-dev nodemon
+
+npm i --save-dev jasmine jasmine-spec-reporter supertest
