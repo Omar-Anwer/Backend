@@ -18,7 +18,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
