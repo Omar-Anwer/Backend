@@ -7,7 +7,7 @@ import path from 'path';
 const THUMB_DIR = './public/images/thumb';
 const request = supertest(app);
 
-describe('Test GET /api/v1/images endpoint', () => {
+describe('GET /api/v1/images', () => {
     beforeAll(() => {
         // Ensure the thumbnail directory exists for tests
         if (!fs.existsSync(THUMB_DIR)) {
@@ -23,12 +23,12 @@ describe('Test GET /api/v1/images endpoint', () => {
         });
     });
 
-    it('should get a 404 for any invalid URL', async () => {
+    it('should return 404 for any invalid URL.', async () => {
         const res = await request.get('/invalid');
         expect(res.status).toBe(404);
     });
 
-    it('should return 404 for a non-existent image', async () => {
+    it('should return 404 for a non-existent image.', async () => {
         const res = await request.get(
             '/api/v1/images?filename=nonexistent&width=100&height=100',
         );
@@ -36,7 +36,7 @@ describe('Test GET /api/v1/images endpoint', () => {
         // expect(res.body.error).toContain("Image 'nonexistent' not found");
     });
 
-    it('should return 400 for any missing query parameters', async () => {
+    it('should return 400 for any missing query parameters.', async () => {
         const res = await request.get('/api/v1/images');
         expect(res.status).toBe(400);
         // expect(res.body.error).toBe(
@@ -44,21 +44,21 @@ describe('Test GET /api/v1/images endpoint', () => {
         // );
     });
 
-    it('should return 400 if width is invalid', async () => {
+    it('should return 400 if width is invalid.', async () => {
         const res = await request.get(
             '/api/v1/images?filename=fjord&width=abc&height=200',
         );
         expect(res.status).toBe(400);
     });
 
-    it('should return 400 if height is invalid', async () => {
+    it('should return 400 if height is invalid.', async () => {
         const res = await request.get(
             '/api/v1/images?filename=fjord&width=200&height=abc',
         );
         expect(res.status).toBe(400);
     });
 
-    it('should return 400 if width or height is less than or equal to zero', async () => {
+    it('should return 400 if width or height is less than or equal to zero.', async () => {
         const res = await request.get(
             '/api/v1/images?filename=fjord&width=0&height=100',
         );
@@ -66,7 +66,7 @@ describe('Test GET /api/v1/images endpoint', () => {
         // expect(res.body.error).toBe('Width and height must be positive integers');
     });
 
-    it('should return 200 and the resized image for valid query parameters', async () => {
+    it('should return 200 and the resized image for valid query parameters.', async () => {
         const filename = 'fjord';
         const width = 200;
         const height = 100;
