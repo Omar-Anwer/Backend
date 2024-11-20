@@ -55,6 +55,13 @@ imageRoute.get('/resize', async (req: Request, res: Response) => {
         `${filename}-${widthInt}x${heightInt}.jpg`,
     );
 
+    // Check if resized image already exists
+    if (fs.existsSync(resizedImagePath)) {
+        console.log('resized image already exists');
+        res.sendFile(resizedImagePath);
+        return;
+    }
+
     try {
         // Resize the image
         await resizeImage(imagePath, widthInt, heightInt, resizedImagePath);
