@@ -1,67 +1,71 @@
 import express, { Request, Response } from 'express';
 import path from 'node:path';
 import fs from 'node:fs';
-import sharp from 'sharp';
+import { resizeImage } from '../../services/imageProcessingService';
 
 const imageRoute = express.Router();
 
 const imagesDir = path.join(__dirname, '../../../public/images/');
 
-imageRoute.get('/', async (req: Request, res: Response) => {
+imageRoute.get('/resize', async (req: Request, res: Response) => {
     const { filename, width, height } = req.query;
 
     // Validate query parameters
     if (!filename || !width || !height) {
-        res.status(400).json({
-            error: 'Missing required query parameters: filename, width, and height',
-        });
+        const errorMsg =
+            'Missing required query parameters: filename, width, and height';
+        console.error(errorMsg);
+        res.status(400).json({ error: errorMsg });
         return;
     }
 
     // Validate filename
-    const imagePath = path.join(imagesDir, 'full/', `${filename}.jpg`);
+    const imagePath = path.join(imagesDir, 'full', `${filename}.jpg`);
 
     if (!fs.existsSync(imagePath)) {
-        res.status(404).json({
-            error: `Image '${filename}' not found in ${imagePath}`,
-        });
+        const errorMsg = `Image '${filename}' not found in ${imagePath}`;
+        console.error(errorMsg);
+        res.status(404).json({ error: errorMsg });
         return;
     }
 
     // Validate dimensions
+    const widthNum = Number(width);
+    const heightNum = Number(height);
+
+    if (
+        !Number.isInteger(widthNum) ||
+        !Number.isInteger(heightNum) ||
+        widthNum <= 0 ||
+        heightNum <= 0
+    ) {
+        const errorMsg =
+            'Invalid width or height, width and height must be non-zero positive integers';
+        console.error(errorMsg);
+        res.status(400).json({ error: errorMsg });
+        return;
+    }
+
     const widthInt = parseInt(width as string, 10);
     const heightInt = parseInt(height as string, 10);
 
-    if (isNaN(widthInt) || isNaN(heightInt)) {
-        res.status(400).json({ error: 'Invalid width, and height' });
-        return;
-    }
-
-    if (widthInt <= 0 || heightInt <= 0) {
-        res.status(400).json({
-            error: 'Width and height must be positive integers',
-        });
-        return;
-    }
     const resizedImagePath = path.join(
         imagesDir,
-        'thumb/',
+        'thumb',
         `${filename}-${widthInt}x${heightInt}.jpg`,
     );
-    // console.log('resizedImagePath:', resizedImagePath);
 
     try {
         // Resize the image
-        await sharp(imagePath)
-            .resize(widthInt, heightInt)
-            .toFile(resizedImagePath);
+        await resizeImage(imagePath, widthInt, heightInt, resizedImagePath);
         // Send the resized image
         res.sendFile(resizedImagePath);
         return;
     } catch (error) {
-        console.error('Error processing image:', error);
+        const errorMsg = 'Error processing image: ';
+        console.error(errorMsg, error);
         res.status(500).json({
-            error: 'Failed to process image',
+            error: errorMsg,
         });
         return;
     }
