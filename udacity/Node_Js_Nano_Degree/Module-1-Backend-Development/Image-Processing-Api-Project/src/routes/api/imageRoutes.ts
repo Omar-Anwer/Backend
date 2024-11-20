@@ -48,7 +48,7 @@ imageRoute.get('/', async (req: Request, res: Response) => {
         'thumb/',
         `${filename}-${widthInt}x${heightInt}.jpg`,
     );
-    console.log('resizedImagePath:', resizedImagePath);
+    // console.log('resizedImagePath:', resizedImagePath);
 
     try {
         // Resize the image

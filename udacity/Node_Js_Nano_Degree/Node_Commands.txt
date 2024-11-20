@@ -28,9 +28,12 @@ rm -rf node_modules package-lock.json && npm install
 (dependencies)
 
 npm i --save express@4.17.1
+npm i --save sharp@0.32.0
+npm i --save lodash
+
 npm i --save dotenv
 npm i --save mongoose
-npm i --save lodash
+
 
 --------------
 (dev dependencies) (-D or --save-dev)
@@ -47,11 +50,8 @@ npm i --save-dev @typescript-eslint/eslint-plugin@5.59.11 @typescript-eslint/par
 -------------------------------
 (Testing)
 
-npm i --save-dev jasmine jasmine-spec-reporter
-npm i --save-dev supertest
-
-npm i --save-dev @types/jasmine
-npm i --save-dev @types/supertest
+npm i --save-dev jasmine jasmine-spec-reporter supertest
+npm i --save-dev @types/jasmine @types/supertest
 
 -------------------------------
 (typescript)
@@ -109,6 +109,13 @@ tsconfig.js
   "exclude": ["node_modules", "./dist", "spec"]
 }
 
+target: Enables the specification of the target JavaScript version that the compiler will output
+module: Facilitates the utilization of a module manager in the compiled JavaScript code. CommonJS is supported and is a standard in Node.js
+strict: Toggles strict type-checking protocols
+esModuleInterop: Enables the compilation of ES6 modules to CommonJS modules
+skipLibCheck: When set to true, bypasses the type checking of default library declaration files
+forceConsistentCasingInFileNames: When set to true, enforces case-sensitive file naming
+
 ----------------------------------------
 (node package executer)
 
@@ -120,8 +127,8 @@ npx tsc --init
 npm run prettier
 npm run lint
 npm run build
-npm run test or npm test
-npm run start or (npm run dev)
+npm run test
+npm run start (production) or npm run dev (dev)
 
 node build/main node build/.
 =======================================
@@ -160,15 +167,12 @@ project/
 │   │     │      └── reporter.ts
 │   │     └── xxxSpec.ts
 │   │
-│   │
 │   ├──── app.js                   # Express app initialization
 │   │
 │   └──── server.js                # Entry point, server configuration
 │
 ├── config/                        # Configuration files (e.g., environment, DB, etc.)
 │   └── db.js
-│
-├── tests/                         # Test cases (unit, integration, etc.)
 │
 ├── public/                        # Public assets (e.g., images, static files)
 │
@@ -178,9 +182,3 @@ project/
 │
 └── README.md                      # Project documentation
 =======================================================================
-npm init -y
-npm i --save express@4.17.1
-
-npm i --save-dev nodemon
-
-npm i --save-dev jasmine jasmine-spec-reporter supertest
